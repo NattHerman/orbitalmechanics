@@ -9,10 +9,12 @@ extends Node3D
 var acceleration: Vector3 = Vector3.ZERO
 var velocity: Vector3 = Vector3.ZERO
 
-@onready var path_mesh := MeshInstance3D.new()
 @onready var immediate_mesh := ImmediateMesh.new()
+@onready var path_mesh := MeshInstance3D.new()
+var max_path_points: int = 1000
 var path_mesh_points: Array
 var material: ORMMaterial3D
+
 var default_clock_time = 0.05
 var clock_wait_time = default_clock_time
 @onready var previous_path_timestamp = Time.get_ticks_msec()
@@ -52,6 +54,8 @@ func update_path() -> void:
 	var prev_path_point = global_position
 	if path_mesh_points.size() > 0:
 		prev_path_point = path_mesh_points [0]
+	if path_mesh_points.size() > max_path_points:
+		path_mesh_points.pop_front()
 	for point in path_mesh_points:
 		immediate_mesh.surface_add_vertex(prev_path_point)
 		immediate_mesh.surface_add_vertex(point)
