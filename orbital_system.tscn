@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dy4k8mqrcayqe"]
+
+[ext_resource type="Script" path="res://orbital_system.gd" id="1_p0ndc"]
+
+[node name="OrbitalSystem" type="Node3D"]
+script = ExtResource("1_p0ndc")

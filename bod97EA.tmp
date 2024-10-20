@@ -1,11 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://biulera3s2kby"]
+[gd_scene load_steps=8 format=3 uid="uid://biulera3s2kby"]
 
 [ext_resource type="Script" path="res://body.gd" id="1_x8ldj"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_hlbj6"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_8j3xu"]
-resource_local_to_scene = true
 radius = 6.0
 height = 12.0
 
@@ -13,6 +12,12 @@ height = 12.0
 gravity = Vector3(0, 0, 0)
 
 [sub_resource type="SphereMesh" id="SphereMesh_qqn1r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ofcsp"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_k6jnh"]
 
 [node name="Body" type="Node3D"]
 script = ExtResource("1_x8ldj")
@@ -33,9 +38,13 @@ fixed_fps = 5
 process_material = SubResource("ParticleProcessMaterial_d0p5r")
 draw_pass_1 = SubResource("SphereMesh_qqn1r")
 
+[node name="PathMesh" type="MeshInstance3D" parent="."]
+top_level = true
+material_override = SubResource("StandardMaterial3D_ofcsp")
+mesh = SubResource("ImmediateMesh_k6jnh")
+
 [node name="PathClock" type="Timer" parent="."]
-wait_time = 0.05
+wait_time = 0.1
 autostart = true
 
-[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="timeout" from="PathClock" to="." method="_on_path_clock_timeout"]
