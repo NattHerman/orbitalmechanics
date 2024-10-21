@@ -31,7 +31,7 @@ environment = SubResource("Environment_vpfv4")
 [node name="OrbitalSystem" parent="." instance=ExtResource("1_s8kjn")]
 
 [node name="Body5" parent="OrbitalSystem" instance=ExtResource("2_6fio3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71.1761, 11.6664, 96.4627)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -113.593, 19.2709, 0)
 mass = 250.0
 initial_velocity = Vector3(0, 10, 0)
 

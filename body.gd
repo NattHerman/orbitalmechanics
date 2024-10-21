@@ -15,7 +15,7 @@ var max_path_points: int = 1000
 var path_mesh_points: Array
 var material: ORMMaterial3D
 
-var default_clock_time = 0.05
+var default_clock_time = 0.005
 var clock_wait_time = default_clock_time
 @onready var previous_path_timestamp = Time.get_ticks_msec()
 
@@ -42,7 +42,7 @@ func _physics_process(realdelta: float) -> void:
 	position += velocity * delta
 	acceleration = Vector3.ZERO
 	var current_time = Time.get_ticks_msec()
-	if current_time - previous_path_timestamp >= clock_wait_time:
+	if current_time - previous_path_timestamp >= clock_wait_time * 1000:
 		update_path()
 		previous_path_timestamp = Time.get_ticks_msec()
 
@@ -77,7 +77,7 @@ func update_radius(new_radius: float):
 
 
 func _on_time_multiplier_changed():
-	clock_wait_time = default_clock_time / GlobalChanges.time_multiplier
+	clock_wait_time = GlobalChanges.time_multiplier / default_clock_time
 
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
