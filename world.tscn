@@ -31,25 +31,26 @@ environment = SubResource("Environment_vpfv4")
 [node name="OrbitalSystem" parent="." instance=ExtResource("1_s8kjn")]
 
 [node name="Body5" parent="OrbitalSystem" instance=ExtResource("2_6fio3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -113.593, 19.2709, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 153.515, 62.4849, 0)
 mass = 250.0
 initial_velocity = Vector3(0, 10, 0)
 
-[node name="Body2" parent="OrbitalSystem" instance=ExtResource("2_6fio3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 60, 0)
-radius = 6.0
-initial_velocity = Vector3(10, 0, 0)
+[node name="Body6" parent="OrbitalSystem" instance=ExtResource("2_6fio3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.04514, -116.941, 0)
+mass = 250.0
+initial_velocity = Vector3(-10, 10, 0)
 
-[node name="Body4" parent="OrbitalSystem" instance=ExtResource("2_6fio3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95.3087, -38.6845, 0)
-initial_velocity = Vector3(-10, -2, 0)
+[node name="Body7" parent="OrbitalSystem" instance=ExtResource("2_6fio3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -155.031, 53.1663, 0)
+mass = 250.0
+initial_velocity = Vector3(0, 10, 0)
 
 [node name="Body3" parent="OrbitalSystem" instance=ExtResource("2_6fio3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.134995, -48.4937, 0)
-initial_velocity = Vector3(-10, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.26596, 47.3025, 0)
+initial_velocity = Vector3(10, 0, 0)
 
 [node name="Body" parent="OrbitalSystem" instance=ExtResource("2_6fio3")]
-radius = 12.742
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50613, -8.55328, -7.62939e-06)
 mass = 500.0
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -70,42 +71,64 @@ mesh = SubResource("SphereMesh_d5fpn")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -54.0
-offset_right = 122.0
-grow_vertical = 0
+offset_right = 142.0
+offset_bottom = 74.0
 theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="LockCamToCoM" type="Button" parent="CanvasLayer/MarginContainer"]
+[node name="CamLockOptions" type="OptionButton" parent="CanvasLayer/MarginContainer"]
 layout_mode = 2
-focus_neighbor_top = NodePath("../../VBoxContainer/HalveTimeMult")
-toggle_mode = true
-text = "Lock cam to
-center of mass"
+selected = 2
+item_count = 3
+popup/item_0/text = "LOCK_MASSCENTER"
+popup/item_1/text = "LOCK_BODY"
+popup/item_1/id = 1
+popup/item_2/text = "LOCK_UNLOCKED"
+popup/item_2/id = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
-offset_left = 58.0
-offset_top = 47.0
-offset_right = 98.0
-offset_bottom = 140.0
+[node name="TimeMultContainer" type="VBoxContainer" parent="CanvasLayer"]
+offset_left = 23.0
+offset_top = 79.0
+offset_right = 89.0
+offset_bottom = 172.0
 
-[node name="LabelTimeMult" type="Label" parent="CanvasLayer/VBoxContainer"]
+[node name="LabelTimeMult" type="Label" parent="CanvasLayer/TimeMultContainer"]
 layout_mode = 2
 text = "text text"
 horizontal_alignment = 1
 
-[node name="DoubleTimeMult" type="Button" parent="CanvasLayer/VBoxContainer"]
+[node name="DoubleTimeMult" type="Button" parent="CanvasLayer/TimeMultContainer"]
 layout_mode = 2
 text = "2x"
 
-[node name="HalveTimeMult" type="Button" parent="CanvasLayer/VBoxContainer"]
+[node name="HalveTimeMult" type="Button" parent="CanvasLayer/TimeMultContainer"]
 layout_mode = 2
-focus_neighbor_bottom = NodePath("../../MarginContainer/LockCamToCoM")
 text = "0.5x"
 
-[connection signal="toggled" from="CanvasLayer/MarginContainer/LockCamToCoM" to="." method="_on_lock_cam_to_co_m_toggled"]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/DoubleTimeMult" to="." method="_on_double_time_mult_pressed"]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/HalveTimeMult" to="." method="_on_halve_time_mult_pressed"]
+[node name="BodySelectContainer" type="VBoxContainer" parent="CanvasLayer"]
+offset_left = 104.95
+offset_top = 79.0
+offset_right = 144.95
+offset_bottom = 126.0
+
+[node name="BodySelectLabel" type="Label" parent="CanvasLayer/BodySelectContainer"]
+layout_mode = 2
+text = "Body: 0"
+horizontal_alignment = 1
+
+[node name="BodyIncrement" type="Button" parent="CanvasLayer/BodySelectContainer"]
+layout_mode = 2
+text = "Next body"
+
+[node name="BodyDecrement" type="Button" parent="CanvasLayer/BodySelectContainer"]
+layout_mode = 2
+text = "Prev body"
+
+[connection signal="cam_unlock_override" from="Camera3D" to="." method="_on_camera_3d_cam_unlock_override"]
+[connection signal="item_selected" from="CanvasLayer/MarginContainer/CamLockOptions" to="." method="_on_option_button_item_selected"]
+[connection signal="pressed" from="CanvasLayer/TimeMultContainer/DoubleTimeMult" to="." method="_on_double_time_mult_pressed"]
+[connection signal="pressed" from="CanvasLayer/TimeMultContainer/HalveTimeMult" to="." method="_on_halve_time_mult_pressed"]
+[connection signal="pressed" from="CanvasLayer/BodySelectContainer/BodyIncrement" to="." method="_on_body_increment_pressed"]
+[connection signal="pressed" from="CanvasLayer/BodySelectContainer/BodyDecrement" to="." method="_on_body_decrement_pressed"]

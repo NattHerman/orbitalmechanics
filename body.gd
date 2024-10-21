@@ -2,10 +2,10 @@ extends Node3D
 
 
 @export var density: float = 30
-@export var radius: float = 6.371
 @export var mass: float = 1.0
 @export var initial_velocity: Vector3 = Vector3.ZERO
 
+var radius: float
 var acceleration: Vector3 = Vector3.ZERO
 var velocity: Vector3 = Vector3.ZERO
 
