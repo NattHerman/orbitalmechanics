@@ -17,7 +17,7 @@ var camera_offset: Vector3 = Vector3(0, 0, 0)
 
 
 func _ready() -> void:
-	camera_mode = CAMLOCK_UNLOCKED
+	camera_mode = CAMLOCK_MASSCENTER
 
 
 func validate_body():

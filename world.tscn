@@ -30,28 +30,19 @@ environment = SubResource("Environment_vpfv4")
 
 [node name="OrbitalSystem" parent="." instance=ExtResource("1_s8kjn")]
 
-[node name="Body5" parent="OrbitalSystem" instance=ExtResource("2_6fio3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 153.515, 62.4849, 0)
-mass = 250.0
-initial_velocity = Vector3(0, 10, 0)
-
 [node name="Body6" parent="OrbitalSystem" instance=ExtResource("2_6fio3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.04514, -116.941, 0)
-mass = 250.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.5989, 12.4906, 0)
+mass = 10.0
 initial_velocity = Vector3(-10, 10, 0)
-
-[node name="Body7" parent="OrbitalSystem" instance=ExtResource("2_6fio3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -155.031, 53.1663, 0)
-mass = 250.0
-initial_velocity = Vector3(0, 10, 0)
-
-[node name="Body3" parent="OrbitalSystem" instance=ExtResource("2_6fio3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.26596, 47.3025, 0)
-initial_velocity = Vector3(10, 0, 0)
 
 [node name="Body" parent="OrbitalSystem" instance=ExtResource("2_6fio3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50613, -8.55328, -7.62939e-06)
 mass = 500.0
+
+[node name="Body7" parent="OrbitalSystem" instance=ExtResource("2_6fio3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.9045, 13.3084, 0)
+mass = 0.01
+initial_velocity = Vector3(-13, 13, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.384405, 193.27)
