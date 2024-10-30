@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var camera = $Camera3D
+@onready var camera = $FreeCam
 @onready var camera_z = camera.position.z
 @onready var orbital_system = $OrbitalSystem
 @onready var label_time_mult = $CanvasLayer/TimeMultContainer/LabelTimeMult
@@ -37,12 +37,10 @@ func _process(_delta: float) -> void:
 	var center_of_mass = orbital_system.calculate_center_of_mass()
 	match camera_mode:
 		CAMLOCK_MASSCENTER:
-			camera.position = camera_offset + center_of_mass
-			camera.position.z = camera_z
+			camera.position = center_of_mass
 		CAMLOCK_BODY:
 			validate_body()
-			camera.position = camera_offset + selected_body.position
-			camera.position.z = camera_z
+			camera.position = selected_body.position
 		CAMLOCK_UNLOCKED:
 			pass # just do nothing, chill for once. Take a moment to relax.
 	$Debug.position = center_of_mass
@@ -64,14 +62,14 @@ func _on_option_button_item_selected(index: int) -> void:
 			validate_body()
 
 
-func _on_camera_3d_cam_unlock_override() -> void:
-	camera_mode = CAMLOCK_UNLOCKED
-	cam_lock_options.selected = 2
-
-
 func _on_body_increment_pressed() -> void:
 	increment_body(1)
 
 
 func _on_body_decrement_pressed() -> void:
 	increment_body(-1)
+
+
+func _on_free_cam_cam_unlock_override() -> void:
+	camera_mode = CAMLOCK_UNLOCKED
+	cam_lock_options.selected = 2

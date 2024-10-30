@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://world.gd" id="1_1ycx0"]
 [ext_resource type="PackedScene" uid="uid://dy4k8mqrcayqe" path="res://orbital_system.tscn" id="1_s8kjn"]
 [ext_resource type="PackedScene" uid="uid://biulera3s2kby" path="res://body.tscn" id="2_6fio3"]
-[ext_resource type="Script" path="res://camera_3d.gd" id="4_ssbvj"]
+[ext_resource type="PackedScene" uid="uid://n1dr2a7u4lek" path="res://free_camera.tscn" id="4_g7mri"]
 
 [sub_resource type="Environment" id="Environment_vpfv4"]
 background_mode = 1
@@ -28,6 +28,8 @@ script = ExtResource("1_1ycx0")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_vpfv4")
 
+[node name="FreeCam" parent="." instance=ExtResource("4_g7mri")]
+
 [node name="OrbitalSystem" parent="." instance=ExtResource("1_s8kjn")]
 
 [node name="Body6" parent="OrbitalSystem" instance=ExtResource("2_6fio3")]
@@ -43,12 +45,6 @@ mass = 500.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.9045, 13.3084, 0)
 mass = 0.01
 initial_velocity = Vector3(-13, 13, 0)
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.384405, 193.27)
-projection = 1
-size = 378.127
-script = ExtResource("4_ssbvj")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.578769, 0.390244, -0.716056, 0, 0.878066, 0.478539, 0.815492, -0.276963, 0.508198, 0, 0, 0)
@@ -117,7 +113,7 @@ text = "Next body"
 layout_mode = 2
 text = "Prev body"
 
-[connection signal="cam_unlock_override" from="Camera3D" to="." method="_on_camera_3d_cam_unlock_override"]
+[connection signal="cam_unlock_override" from="FreeCam" to="." method="_on_free_cam_cam_unlock_override"]
 [connection signal="item_selected" from="CanvasLayer/MarginContainer/CamLockOptions" to="." method="_on_option_button_item_selected"]
 [connection signal="pressed" from="CanvasLayer/TimeMultContainer/DoubleTimeMult" to="." method="_on_double_time_mult_pressed"]
 [connection signal="pressed" from="CanvasLayer/TimeMultContainer/HalveTimeMult" to="." method="_on_halve_time_mult_pressed"]

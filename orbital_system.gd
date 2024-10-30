@@ -1,6 +1,7 @@
 extends Node3D
 
 @onready var body_scene = load("res://body.tscn")
+@onready var camera = $"../FreeCam".camera
 var bodies
 const gravitational_constant = 10 #6.674#e-11
 
@@ -44,10 +45,16 @@ func _physics_process(_delta: float) -> void:
 	all_combinations(bodies, apply_gravity)
 
 
+func randf_symmetrical(abs):
+	return randf_range(-abs, abs)
+
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("spawn"):
 		var body = body_scene.instantiate()
 		var mouse_pos = get_viewport().get_mouse_position()
-		var spawn_pos = $"../Camera3D".project_position(mouse_pos, $"../Camera3D".position.z)
+		var spawn_pos = camera.project_position(mouse_pos, camera.position.z)
+		var start_vel_max = 10.0
+		body.initial_velocity = Vector3(randf_symmetrical(start_vel_max), randf_symmetrical(start_vel_max), randf_symmetrical(start_vel_max))
 		body.position = spawn_pos
 		add_child(body)

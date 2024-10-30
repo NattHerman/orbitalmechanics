@@ -52,6 +52,7 @@ func update_path() -> void:
 	immediate_mesh.surface_begin(Mesh.PRIMITIVE_LINES, material)
 	path_mesh_points.append(global_position)
 	var prev_path_point = global_position
+	
 	if path_mesh_points.size() > 0:
 		prev_path_point = path_mesh_points [0]
 	if path_mesh_points.size() > max_path_points:
@@ -67,6 +68,10 @@ func calc_radius(mass: float, density: float):
 	var volume = mass / density
 	var new_radius = ((3*volume)/(4*PI))**1/3
 	return new_radius
+
+
+func momentum() -> float:
+	return mass * velocity.length()
 
 
 func update_radius(new_radius: float):
