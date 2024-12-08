@@ -44,15 +44,15 @@ func _process(_delta: float) -> void:
 		CAMLOCK_UNLOCKED:
 			pass # just do nothing, chill for once. Take a moment to relax.
 	$Debug.position = center_of_mass
-	label_time_mult.text = str(GlobalChanges.time_multiplier) + "x"
+	label_time_mult.text = str(Globals.time_multiplier) + "x"
 
 
 func _on_double_time_mult_pressed() -> void:
-	GlobalChanges.time_multiplier *= 2.0
+	Globals.time_multiplier *= 2.0
 
 
 func _on_halve_time_mult_pressed() -> void:
-	GlobalChanges.time_multiplier /= 2.0
+	Globals.time_multiplier /= 2.0
 
 
 func _on_option_button_item_selected(index: int) -> void:

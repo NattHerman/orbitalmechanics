@@ -1,5 +1,6 @@
 extends Node
 
+var bodies
 var time_multiplier: float = 1.0
 signal time_multiplier_changed
 

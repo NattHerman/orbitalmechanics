@@ -3,7 +3,12 @@ extends Node3D
 @onready var body_scene = load("res://body.tscn")
 @onready var camera = $"../FreeCam".camera
 var bodies
+
 const gravitational_constant = 10 #6.674#e-11
+
+
+func _ready() -> void:
+	Globals.bodies = bodies
 
 
 func calculate_center_of_mass():

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://body.gd" id="1_x8ldj"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_hlbj6"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_xs24r"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_8j3xu"]
 resource_local_to_scene = true
@@ -20,7 +20,7 @@ script = ExtResource("1_x8ldj")
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("SphereShape3D_hlbj6")
+shape = SubResource("SphereShape3D_xs24r")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_8j3xu")

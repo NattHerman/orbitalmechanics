@@ -31,13 +31,12 @@ func _ready() -> void:
 	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	material.albedo_color = Color.WHITE
 	
-	
 	update_radius(calc_radius(mass, density))
 
 
 func _physics_process(realdelta: float) -> void:
 	#print(name, " ", acceleration)
-	var delta = GlobalChanges.time_multiplier * realdelta
+	var delta = Globals.time_multiplier * realdelta
 	velocity += acceleration * delta
 	position += velocity * delta
 	acceleration = Vector3.ZERO
@@ -82,7 +81,7 @@ func update_radius(new_radius: float):
 
 
 func _on_time_multiplier_changed():
-	clock_wait_time = GlobalChanges.time_multiplier / default_clock_time
+	clock_wait_time = Globals.time_multiplier / default_clock_time
 
 
 func _on_area_3d_area_entered(area: Area3D) -> void:

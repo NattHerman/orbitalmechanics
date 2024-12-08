@@ -9,3 +9,12 @@ script = ExtResource("1_4kfxm")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 200)
 projection = 1
 size = 380.0
+
+[node name="PlanetPickerRay" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, 0, -1000)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="PlanetLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
